@@ -1,0 +1,155 @@
+---
+# Security Lab L3LS
+all:
+  children:
+    CVP_cluster:
+      vars:
+          ansible_user: arista
+          ansible_password: "Arista123!"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: False
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+      hosts: 
+        cvp1:
+          ansible_httpapi_host: 192.168.0.5
+          ansible_host: 192.168.0.5
+    FABRIC:
+      vars:
+        ansible_user: arista
+        ansible_ssh_pass: "Arista123!"
+# Use this section if you want to perform testing via the eAPI
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: True
+        ansible_httpapi_validate_certs: False
+        ansible_network_os: eos
+        ansible_httpapi_port: 443
+        ansible_become: yes
+        ansible_become_method: enable
+# Use this section if you want to perform testing via the CLI through SSH
+        # ansible_connection: network_cli
+        # ansible_network_os: eos
+        # ansible_become: yes
+        # ansible_become_method: enable
+      children:
+        CAMPUS1:
+          children:
+            C1-SPINES:
+              vars:
+                type: spine
+              hosts:
+                c1-spine1:
+                  ansible_host: 192.168.0.111
+                c1-spine2:
+                  ansible_host: 192.168.0.112
+            C1-LEAVES:
+              vars: 
+                type: l3leaf
+              hosts:
+                c1-leaf1:
+                  ansible_host: 192.168.0.101
+                c1-leaf2:
+                  ansible_host: 192.168.0.102
+                c1-leaf3:
+                  ansible_host: 192.168.0.103
+                c1-leaf4:
+                  ansible_host: 192.168.0.104
+                c1-leaf5:
+                  ansible_host: 192.168.0.105
+                c1-leaf6:
+                  ansible_host: 192.168.0.106
+                c1-borderleaf1:
+                  ansible_host: 192.168.0.107
+                c1-borderleaf2:
+                  ansible_host: 192.168.0.108
+            # C1-ZTX:
+            #   vars: 
+            #     type: service_leaf
+            #   hosts:
+            #     c1-ZTX-Monitor1:
+            #       ansible_host: 192.168.0.121
+
+        CAMPUS2:
+          children:
+            C2-SPINES:
+              vars:
+                type: spine
+              hosts:
+                c2-spine1:
+                  ansible_host: 192.168.0.113
+                c2-spine2:
+                  ansible_host: 192.168.0.114
+            C2-LEAVES:
+              vars: 
+                type: l3leaf
+              hosts:
+                c2-leaf1:
+                  ansible_host: 192.168.0.201
+                c2-leaf2:
+                  ansible_host: 192.168.0.202
+                c2-leaf3:
+                  ansible_host: 192.168.0.203
+                c2-leaf4:
+                  ansible_host: 192.168.0.204
+                c2-leaf5:
+                  ansible_host: 192.168.0.205
+                c2-leaf6:
+                  ansible_host: 192.168.0.206
+                c2-borderleaf1:
+                  ansible_host: 192.168.0.207
+                c2-borderleaf2:
+                  ansible_host: 192.168.0.208
+            # C2-ZTX:
+            #   vars: 
+            #     type: service_leaf
+            #   hosts:
+            #     c1-ZTX-Monitor1:
+            #       ansible_host: 192.168.0.123
+
+        CAMPUS3:
+          children:
+            C3-SPINES:
+              vars:
+                type: spine
+              hosts:
+                c3-spine1:
+                  ansible_host: 192.168.0.115
+                c3-spine2:
+                  ansible_host: 192.168.0.116
+            C3-LEAVES:
+              vars: 
+                type: l3leaf
+              hosts:
+                c3-leaf1:
+                  ansible_host: 192.168.0.131
+                c3-leaf2:
+                  ansible_host: 192.168.0.132
+                c3-leaf3:
+                  ansible_host: 192.168.0.133
+                c3-leaf4:
+                  ansible_host: 192.168.0.134
+                c3-leaf5:
+                  ansible_host: 192.168.0.135
+                c3-leaf6:
+                  ansible_host: 192.168.0.136
+                c3-borderleaf1:
+                  ansible_host: 192.168.0.137
+                c3-borderleaf2:
+                  ansible_host: 192.168.0.138
+            # C2-ZTX:
+            #   vars: 
+            #     type: service_leaf
+            #   hosts:
+            #     c1-ZTX-Monitor1:
+            #       ansible_host: 192.168.0.123
+    EVPN_SERVICES:
+      children:
+        C1-LEAVES:
+        C2-LEAVES:
+        C3-LEAVES:
+    ENDPOINT_CONNECT:
+      children:
+        C1-LEAVES:
+        C2-LEAVES:
+        C3-LEAVES:

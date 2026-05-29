@@ -1,0 +1,53 @@
+# testing/catalog.yml
+testing.custom:
+
+  # ==========================================
+  #  STAFF-H1 DATA PLANE PROTOCOL CONFIG
+  # ==========================================
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      hosts:
+        - destination: "172.16.21.10" # Check reachability to Media-H2
+          vrf: "default"
+          repeat: 5
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      hosts:
+        - destination: "172.16.31.10" # Check reachability to IOT-H3
+          vrf: "default"
+          repeat: 5
+
+  # ==========================================
+  #  MEDIA-H2 DATA PLANE PROTOCOL CONFIG
+  # ==========================================
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H2"]
+      hosts:
+        - destination: "172.16.11.10" # Check reachability to Staff-H1
+          vrf: "default"
+          repeat: 5
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H2"]
+      hosts:
+        - destination: "172.16.41.10" # Check reachability to Sales-H4
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H2"]            # --- THE FIX: Media-H2 runs the client check ---
+      destination: "172.16.11.10"    # --- THE FIX: Target Staff-H1 server IP ---
+      port: 5901                     # Target Application Port
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H2"]            # Run the cleartext check from the client side
+      destination: "172.16.11.10"
+      port: 23
+

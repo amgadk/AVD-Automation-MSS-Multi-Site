@@ -1,0 +1,286 @@
+Device,Test Name,Test Status,Message(s),Test description,Test category
+borderleaf1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:47 borderleaf1 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1748) -- Master ProcMgr (PID=1748) exiting.
+ May 14 22:54:47 borderleaf1 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Stp (pid:3226) at tbl://stpListen/+n closed by peer (EOF)
+ May 14 22:54:47 borderleaf1 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpListen/+n-in)(Stp (pid:3226))
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+borderleaf1,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+borderleaf2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:40 borderleaf2 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1723) -- Master ProcMgr (PID=1723) exiting.
+ May 14 22:54:40 borderleaf2 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Stp (pid:3194) at tbl://stpListen/+n closed by peer (EOF)
+ May 14 22:54:40 borderleaf2 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpListen/+n-in)(Stp (pid:3194))
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+borderleaf2,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:45 leaf1 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1724) -- Master ProcMgr (PID=1724) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf1,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:44 leaf2 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1722) -- Master ProcMgr (PID=1722) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf2,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf3,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:42 leaf3 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1710) -- Master ProcMgr (PID=1710) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf3,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf4,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:41 leaf4 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1701) -- Master ProcMgr (PID=1701) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf4,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf5,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:47 leaf5 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1710) -- Master ProcMgr (PID=1710) exiting.
+ May 14 22:54:47 leaf5 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Stp (pid:3277) at tbl://stpListen/+n closed by peer (EOF)
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf5,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+leaf6,VerifyInterfacesStatus,failure,"Interface: Port-Channel10 - Status mismatch - Expected: up/up, Actual: down/lowerLayerDown",Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf6,VerifyPortChannels,failure,Interface: Port-Channel10 - Inactive port(s) - Ethernet10,Verifies there are no inactive ports in port channels.,Interfaces
+leaf6,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:43 leaf6 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1698) -- Master ProcMgr (PID=1698) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf6,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+spine1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:40 spine1 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1698) -- Master ProcMgr (PID=1698) exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+spine1,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+spine2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+May 14 22:54:45 spine2 ProcMgr: %PROCMGR-3-SHUTDOWNREQUESTED: ProcMgr shutdown requested via SIGQUIT or SIGTERM to worker (PID=1719) -- Master ProcMgr (PID=1719) exiting.
+ May 14 22:54:45 spine2 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Stp (pid:3198) at tbl://stpListen/+n closed by peer (EOF)
+ May 14 22:54:45 spine2 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://stpListen/+n-in)(Stp (pid:3198))
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+spine2,VerifyNTP,failure,NTP status mismatch - Expected: synchronised Actual: NTP is disabled.,Verifies if NTP is synchronised.,System
+borderleaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+borderleaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+borderleaf1,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+borderleaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf1,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+borderleaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+borderleaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+borderleaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+borderleaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+borderleaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+borderleaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+borderleaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+borderleaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+borderleaf1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+borderleaf1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+borderleaf1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+borderleaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+borderleaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+borderleaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+borderleaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+borderleaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+borderleaf2,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+borderleaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf2,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+borderleaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+borderleaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+borderleaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+borderleaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+borderleaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+borderleaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+borderleaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+borderleaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+borderleaf2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+borderleaf2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+borderleaf2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+borderleaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+borderleaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+borderleaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf1,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf1,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf2,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf2,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf3,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf3,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf3,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf3,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf3,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf3,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf3,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf3,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf3,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf3,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf4,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf4,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf4,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf4,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf4,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf4,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf4,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf4,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf4,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf4,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf4,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf5,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf5,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf5,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf5,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf5,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf5,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf5,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf5,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf5,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf5,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf5,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf5,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf5,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf5,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf5,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf5,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf5,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf5,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf5,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf5,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf5,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf5,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf5,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf5,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf6,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf6,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf6,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf6,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf6,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf6,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf6,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf6,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf6,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf6,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf6,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf6,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf6,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf6,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf6,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf6,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf6,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf6,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf6,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf6,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf6,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf6,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine1,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine2,VerifyLLDPNeighbors,success,,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System

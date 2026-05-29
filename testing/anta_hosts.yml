@@ -1,0 +1,29 @@
+# testing/anta_hosts.yml
+anta_inventory:
+  hosts:
+    - host: 192.168.0.209
+      name: c1-Staff-H1
+    - host: 192.168.0.210
+      name: c1-Media-H2
+    - host: 192.168.0.211
+      name: c1-IOT-H3
+    - host: 192.168.0.212
+      name: c1-Sales-H4
+    - host: 192.168.0.213
+      name: c1-Staff-H5
+    - host: 192.168.0.214
+      name: c1-Sales-H6
+    - host: 192.168.0.216
+      name: c1-Media-H8
+    - host: 192.168.0.217
+      name: c1-Staff-H9
+    - host: 192.168.0.218
+      name: c1-IOT-H10
+    - host: 192.168.0.219
+      name: c1-Sales-H11
+    - host: 192.168.0.220
+      name: c1-IOT-H12
+
+
+
+
