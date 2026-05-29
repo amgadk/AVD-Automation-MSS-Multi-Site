@@ -3,7 +3,7 @@ spine:
   defaults:
     platform: vEOS-lab
     bgp_as: 65010
-    loopback_ipv4_pool: 10.255.0.0/24
+    loopback_ipv4_pool: 10.255.20.0/24
     mlag: false
   nodes:
     - name: c2-spine1
@@ -18,11 +18,11 @@ l3leaf:
   defaults:
     bgp_as: 65100-65250 # Gives a range which will be auto-assigned
     platform: vEOS-lab
-    loopback_ipv4_pool: 10.255.0.0/24 # This is loopback0 (underlay)
-    vtep_loopback_ipv4_pool: 10.255.1.0/24 # This is loopback1 (VTEP)
+    loopback_ipv4_pool: 10.255.20.0/24 # This is loopback0 (underlay)
+    vtep_loopback_ipv4_pool: 10.255.2.0/24 # This is loopback1 (VTEP)
     uplink_interfaces: [Ethernet1, Ethernet2] # Leaf uplinks
     uplink_switches: [c2-spine1, c2-spine2] # Where the leaf uplinks go
-    uplink_ipv4_pool: 10.255.200.0/22 # For the p2p interfaces to chopped up into /31s
+    uplink_ipv4_pool: 10.20.200.0/22 # For the p2p interfaces to chopped up into /31s
     mlag_interfaces: [Ethernet5, Ethernet6] # MLAG peer link
     mlag_peer_ipv4_pool: 10.120.20.0/22 # MLAG peer IPs
     mlag_peer_l3_ipv4_pool: 10.220.0.0/22 # iBGP peering between MLAG peers
