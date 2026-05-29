@@ -111,3 +111,18 @@ l3leaf:
 #       mgmt_ip: 192.168.0.121/24
 #       bgp_as: 65301
 #       uplink_switch_interfaces: [Ethernet15, Ethernet16]
+
+tenants:
+  - name: ACME
+    mac_vrf_vni_base: 2000
+    vrfs:
+      - name: VRF-C
+        vrf_vni: 7777
+        mlag_ibgp_peering_vlan: 3777
+        svis:
+          - id: 101
+            name: STAFF_NW
+            enabled: true
+            ip_address: 172.16.12.1/24
+            ip_virtual_router_addresses:
+              - 172.16.12.254
