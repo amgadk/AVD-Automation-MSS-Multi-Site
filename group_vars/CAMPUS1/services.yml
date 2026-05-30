@@ -1,0 +1,59 @@
+---
+tenants:
+  - name: ACME
+    mac_vrf_vni_base: 2000
+    vrfs:
+      - name: VRF-C
+        vrf_vni: 7777
+        mlag_ibgp_peering_vlan: 3777
+        svis:
+          - id: 101
+            name: STAFF_NW
+            enabled: true
+            ip_address: 172.16.11.1/24
+            ip_virtual_router_addresses:
+              - 172.16.11.254
+          - id: 201
+            name: MEDIA_NW
+            enabled: true
+            ip_address: 172.16.21.1/24
+            ip_virtual_router_addresses:
+              - 172.16.21.254
+          - id: 301
+            name: IOT_NW
+            enabled: true
+            ip_address: 172.16.31.1/24
+            ip_virtual_router_addresses:
+              - 172.16.31.254
+          - id: 401
+            name: SALES_NW
+            enabled: true
+            ip_address: 172.16.41.1/24
+            ip_virtual_router_addresses:
+              - 172.16.41.254
+        l3_interfaces:
+          - interfaces: [ Ethernet12 ]
+            nodes: [ c1-borderleaf1 ]
+            description: Firewall-1-LAN3
+            enabled: true
+            ip_addresses: [ 10.255.255.201/31 ]
+      - name: VRF-S
+        vrf_vni: 8888
+        mlag_ibgp_peering_vlan: 3888
+        svis:
+          - id: 20
+            name: Internal
+            enabled: true
+            ip_address_virtual: 10.1.20.1/24
+        l3_interfaces:
+          - interfaces: [ Ethernet11 ]
+            nodes: [ c1-borderleaf1 ]
+            description: Firewall-1-LAN2
+            enabled: true
+            ip_addresses: [ 10.255.255.199/31 ]
+        static_routes:
+          - nodes:
+              - c1-borderleaf1
+            prefix: 0.0.0.0/0
+            next_hop: 10.255.255.198
+            name: "to_FW-1"

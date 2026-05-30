@@ -1,0 +1,134 @@
+---
+servers:
+  - name: c2-Staff-H1
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet7, Ethernet7 ]
+        switches: [ c2-leaf1, c2-leaf2 ]
+        vlans: 101
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Staff-H1
+          mode: active
+  - name: c2-Media-H2
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet9, Ethernet9 ]
+        switches: [ c2-leaf1, c2-leaf2 ]
+        vlans: 201
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Media-H2
+          mode: active
+  - name: c2-IOT-H3
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet7, Ethernet7 ]
+        switches: [ c2-leaf3, c2-leaf4 ]
+        vlans: 301
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-IOT-H3
+          mode: active
+  - name: c2-Sales-H4
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet9, Ethernet9 ]
+        switches: [ c2-leaf3, c2-leaf4 ]
+        vlans: 401
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Sales-H4
+          mode: active
+  - name: c2-Staff-H5
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet7, Ethernet7 ]
+        switches: [ c2-leaf5, c2-leaf6 ]
+        vlans: 101
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Staff-H5
+          mode: active
+  - name: c2-Sales-H6
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet9, Ethernet9 ]
+        switches: [ c2-leaf5, c2-leaf6 ]
+        vlans: 401
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Sales-H6
+          mode: active
+  - name: c2-Media-H7
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet10 ]
+        switches: [ c2-leaf6 ]
+        vlans: 201
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Media-H7
+          mode: active
+  - name: c2-Media-H8
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet8 ]
+        switches: [ c2-leaf1 ]
+        vlans: 201
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Media-H8
+          mode: active
+  - name: c2-Staff-H9
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet10 ]
+        switches: [ c2-leaf2 ]
+        vlans: 101
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Staff-H9
+          mode: active
+  - name: c2-IOT-H10
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet8 ]
+        switches: [ c2-leaf3 ]
+        vlans: 301
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-IOT-H10
+          mode: active
+  - name: c2-Sales-H11
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet10 ]
+        switches: [ c2-leaf4 ]
+        vlans: 401
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-Sales-H11
+          mode: active
+  - name: c2-IOT-H12
+    adapters:
+      - endpoint_ports: [ Ethernet1 ]
+        switch_ports: [ Ethernet8 ]
+        switches: [ c2-leaf5 ]
+        vlans: 301
+        mode: access
+        spanning_tree_portfast: edge
+        port_channel:
+          description: PortChannel c2-IOT-H12
+          mode: active
