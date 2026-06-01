@@ -1,0 +1,68 @@
+path: []
+inputs:
+  hiddenDeviceMapper: []
+  hiddenIntersectedGroupsMapper: []
+  hiddenPolicyIdMapper:
+    - hiddenPolicyId: 256
+      hiddenPolicyName: Campus1-Policy-1
+    - hiddenPolicyId: 257
+      hiddenPolicyName: Campus2-Policy-1
+    - hiddenPolicyId: 258
+      hiddenPolicyName: Campus3-Policy-1
+  hiddenVrfMapper:
+    - vrfKey: 0
+      vrfName: VRF-C
+  policies:
+    - name: Campus1-Policy-1
+      policyRules: []
+    - name: Campus2-Policy-1
+      policyRules: []
+    - name: Campus3-Policy-1
+      policyRules: []
+  securityDomains:
+    - inputs:
+        securityDomain:
+          domainPolicies:
+            - name: Campus1-Policy-1
+              vrf: VRF-C
+      tags:
+        query: security-domain:Campus1
+    - inputs:
+        securityDomain:
+          domainPolicies:
+            - name: Campus2-Policy-1
+              vrf: VRF-C
+      tags:
+        query: security-domain:Campus2
+    - inputs:
+        securityDomain:
+          domainPolicies:
+            - name: Campus3-Policy-1
+              vrf: VRF-C
+      tags:
+        query: security-domain:Campus3
+  staticGroups:
+    - membership:
+        members:
+          - 172.16.11.0/24
+          - 172.16.12.0/24
+          - 172.16.13.0/24
+      name: Staff_NW
+    - membership:
+        members:
+          - 172.16.21.0/24
+          - 172.16.22.0/24
+          - 172.16.23.0/24
+      name: Media_NW
+    - membership:
+        members:
+          - 172.16.41.0/24
+          - 172.16.42.0/24
+          - 172.16.43.0/24
+      name: Sales_NW
+    - membership:
+        members:
+          - 172.16.31.0/24
+          - 172.16.32.0/24
+          - 172.16.33.0/24
+      name: IOT_NW
