@@ -1,0 +1,597 @@
+# Containerlab topology generated from topology/act-topology.yml
+# Converted from a vendor virtual-lab format to containerlab.
+# Scope: veos nodes only (mapped to the ceos kind), same node names and
+# management IPs as the source file. third-party/tools-server/cvp/generic
+# nodes and any links touching them were dropped.
+name: avd-mss-multi-site
+mgmt:
+  network: avd-mss-mgmt
+  ipv4-subnet: 192.168.0.0/24
+topology:
+  kinds:
+    ceos:
+      image: ceos:4.36.0F
+  nodes:
+    c1-spine1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.111
+    c1-spine2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.112
+    c1-leaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.101
+    c1-leaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.102
+    c1-leaf3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.103
+    c1-leaf4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.104
+    c1-leaf5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.105
+    c1-leaf6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.106
+    c1-borderleaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.107
+    c1-borderleaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.108
+    c1-Staff-H1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.209
+    c1-Media-H2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.210
+    c1-IOT-H3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.211
+    c1-Sales-H4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.212
+    c1-Staff-H5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.213
+    c1-Sales-H6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.214
+    c1-Media-H8:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.216
+    c1-Staff-H9:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.217
+    c1-IOT-H10:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.218
+    c1-Sales-H11:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.219
+    c1-IOT-H12:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.220
+    c2-spine1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.113
+    c2-spine2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.114
+    c2-leaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.201
+    c2-leaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.202
+    c2-leaf3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.203
+    c2-leaf4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.204
+    c2-leaf5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.205
+    c2-leaf6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.206
+    c2-borderleaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.207
+    c2-borderleaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.208
+    c2-Staff-H1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.221
+    c2-Media-H2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.222
+    c2-IOT-H3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.223
+    c2-Sales-H4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.224
+    c2-Staff-H5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.225
+    c2-Sales-H6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.226
+    c2-Media-H8:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.228
+    c2-Staff-H9:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.229
+    c2-IOT-H10:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.230
+    c2-Sales-H11:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.231
+    c2-IOT-H12:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.232
+    c3-spine1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.115
+    c3-spine2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.116
+    c3-leaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.131
+    c3-leaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.132
+    c3-leaf3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.133
+    c3-leaf4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.134
+    c3-leaf5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.135
+    c3-leaf6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.136
+    c3-borderleaf1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.137
+    c3-borderleaf2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.138
+    c3-Staff-H1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.233
+    c3-Media-H2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.234
+    c3-IOT-H3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.235
+    c3-Sales-H4:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.236
+    c3-Staff-H5:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.237
+    c3-Sales-H6:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.238
+    c3-Media-H8:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.240
+    c3-Staff-H9:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.241
+    c3-IOT-H10:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.242
+    c3-Sales-H11:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.243
+    c3-IOT-H12:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.244
+    wan1:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.126
+    wan2:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.127
+    wan3:
+      kind: ceos
+      mgmt-ipv4: 192.168.0.128
+  links:
+  - endpoints:
+    - c1-spine1:eth1
+    - c1-leaf1:eth1
+  - endpoints:
+    - c1-spine1:eth2
+    - c1-leaf2:eth1
+  - endpoints:
+    - c1-spine1:eth3
+    - c1-leaf3:eth1
+  - endpoints:
+    - c1-spine1:eth4
+    - c1-leaf4:eth1
+  - endpoints:
+    - c1-spine1:eth5
+    - c1-leaf5:eth1
+  - endpoints:
+    - c1-spine1:eth6
+    - c1-leaf6:eth1
+  - endpoints:
+    - c1-spine1:eth7
+    - c1-borderleaf1:eth1
+  - endpoints:
+    - c1-spine1:eth8
+    - c1-borderleaf2:eth1
+  - endpoints:
+    - c1-spine2:eth1
+    - c1-leaf1:eth2
+  - endpoints:
+    - c1-spine2:eth2
+    - c1-leaf2:eth2
+  - endpoints:
+    - c1-spine2:eth3
+    - c1-leaf3:eth2
+  - endpoints:
+    - c1-spine2:eth4
+    - c1-leaf4:eth2
+  - endpoints:
+    - c1-spine2:eth5
+    - c1-leaf5:eth2
+  - endpoints:
+    - c1-spine2:eth6
+    - c1-leaf6:eth2
+  - endpoints:
+    - c1-spine2:eth7
+    - c1-borderleaf1:eth2
+  - endpoints:
+    - c1-spine2:eth8
+    - c1-borderleaf2:eth2
+  - endpoints:
+    - c1-leaf1:eth5
+    - c1-leaf2:eth5
+  - endpoints:
+    - c1-leaf1:eth6
+    - c1-leaf2:eth6
+  - endpoints:
+    - c1-leaf3:eth5
+    - c1-leaf4:eth5
+  - endpoints:
+    - c1-leaf3:eth6
+    - c1-leaf4:eth6
+  - endpoints:
+    - c1-leaf5:eth5
+    - c1-leaf6:eth5
+  - endpoints:
+    - c1-leaf5:eth6
+    - c1-leaf6:eth6
+  - endpoints:
+    - c1-borderleaf1:eth5
+    - c1-borderleaf2:eth5
+  - endpoints:
+    - c1-borderleaf1:eth6
+    - c1-borderleaf2:eth6
+  - endpoints:
+    - c1-leaf1:eth7
+    - c1-Staff-H1:eth1
+  - endpoints:
+    - c1-leaf2:eth7
+    - c1-Staff-H1:eth2
+  - endpoints:
+    - c1-leaf1:eth9
+    - c1-Media-H2:eth1
+  - endpoints:
+    - c1-leaf2:eth9
+    - c1-Media-H2:eth2
+  - endpoints:
+    - c1-leaf3:eth7
+    - c1-IOT-H3:eth1
+  - endpoints:
+    - c1-leaf4:eth7
+    - c1-IOT-H3:eth2
+  - endpoints:
+    - c1-leaf3:eth9
+    - c1-Sales-H4:eth1
+  - endpoints:
+    - c1-leaf4:eth9
+    - c1-Sales-H4:eth2
+  - endpoints:
+    - c1-leaf5:eth7
+    - c1-Staff-H5:eth1
+  - endpoints:
+    - c1-leaf6:eth7
+    - c1-Staff-H5:eth2
+  - endpoints:
+    - c1-leaf5:eth9
+    - c1-Sales-H6:eth1
+  - endpoints:
+    - c1-leaf6:eth9
+    - c1-Sales-H6:eth2
+  - endpoints:
+    - c1-leaf1:eth8
+    - c1-Media-H8:eth1
+  - endpoints:
+    - c1-leaf2:eth10
+    - c1-Staff-H9:eth1
+  - endpoints:
+    - c1-leaf3:eth8
+    - c1-IOT-H10:eth1
+  - endpoints:
+    - c1-leaf4:eth10
+    - c1-Sales-H11:eth1
+  - endpoints:
+    - c1-leaf5:eth8
+    - c1-IOT-H12:eth1
+  - endpoints:
+    - c2-spine1:eth1
+    - c2-leaf1:eth1
+  - endpoints:
+    - c2-spine1:eth2
+    - c2-leaf2:eth1
+  - endpoints:
+    - c2-spine1:eth3
+    - c2-leaf3:eth1
+  - endpoints:
+    - c2-spine1:eth4
+    - c2-leaf4:eth1
+  - endpoints:
+    - c2-spine1:eth5
+    - c2-leaf5:eth1
+  - endpoints:
+    - c2-spine1:eth6
+    - c2-leaf6:eth1
+  - endpoints:
+    - c2-spine1:eth7
+    - c2-borderleaf1:eth1
+  - endpoints:
+    - c2-spine1:eth8
+    - c2-borderleaf2:eth1
+  - endpoints:
+    - c2-spine2:eth1
+    - c2-leaf1:eth2
+  - endpoints:
+    - c2-spine2:eth2
+    - c2-leaf2:eth2
+  - endpoints:
+    - c2-spine2:eth3
+    - c2-leaf3:eth2
+  - endpoints:
+    - c2-spine2:eth4
+    - c2-leaf4:eth2
+  - endpoints:
+    - c2-spine2:eth5
+    - c2-leaf5:eth2
+  - endpoints:
+    - c2-spine2:eth6
+    - c2-leaf6:eth2
+  - endpoints:
+    - c2-spine2:eth7
+    - c2-borderleaf1:eth2
+  - endpoints:
+    - c2-spine2:eth8
+    - c2-borderleaf2:eth2
+  - endpoints:
+    - c2-leaf1:eth5
+    - c2-leaf2:eth5
+  - endpoints:
+    - c2-leaf1:eth6
+    - c2-leaf2:eth6
+  - endpoints:
+    - c2-leaf3:eth5
+    - c2-leaf4:eth5
+  - endpoints:
+    - c2-leaf3:eth6
+    - c2-leaf4:eth6
+  - endpoints:
+    - c2-leaf5:eth5
+    - c2-leaf6:eth5
+  - endpoints:
+    - c2-leaf5:eth6
+    - c2-leaf6:eth6
+  - endpoints:
+    - c2-borderleaf1:eth5
+    - c2-borderleaf2:eth5
+  - endpoints:
+    - c2-borderleaf1:eth6
+    - c2-borderleaf2:eth6
+  - endpoints:
+    - c2-leaf1:eth7
+    - c2-Staff-H1:eth1
+  - endpoints:
+    - c2-leaf2:eth7
+    - c2-Staff-H1:eth2
+  - endpoints:
+    - c2-leaf1:eth9
+    - c2-Media-H2:eth1
+  - endpoints:
+    - c2-leaf2:eth9
+    - c2-Media-H2:eth2
+  - endpoints:
+    - c2-leaf3:eth7
+    - c2-IOT-H3:eth1
+  - endpoints:
+    - c2-leaf4:eth7
+    - c2-IOT-H3:eth2
+  - endpoints:
+    - c2-leaf3:eth9
+    - c2-Sales-H4:eth1
+  - endpoints:
+    - c2-leaf4:eth9
+    - c2-Sales-H4:eth2
+  - endpoints:
+    - c2-leaf5:eth7
+    - c2-Staff-H5:eth1
+  - endpoints:
+    - c2-leaf6:eth7
+    - c2-Staff-H5:eth2
+  - endpoints:
+    - c2-leaf5:eth9
+    - c2-Sales-H6:eth1
+  - endpoints:
+    - c2-leaf6:eth9
+    - c2-Sales-H6:eth2
+  - endpoints:
+    - c2-leaf1:eth8
+    - c2-Media-H8:eth1
+  - endpoints:
+    - c2-leaf2:eth10
+    - c2-Staff-H9:eth1
+  - endpoints:
+    - c2-leaf3:eth8
+    - c2-IOT-H10:eth1
+  - endpoints:
+    - c2-leaf4:eth10
+    - c2-Sales-H11:eth1
+  - endpoints:
+    - c2-leaf5:eth8
+    - c2-IOT-H12:eth1
+  - endpoints:
+    - c3-spine1:eth1
+    - c3-leaf1:eth1
+  - endpoints:
+    - c3-spine1:eth2
+    - c3-leaf2:eth1
+  - endpoints:
+    - c3-spine1:eth3
+    - c3-leaf3:eth1
+  - endpoints:
+    - c3-spine1:eth4
+    - c3-leaf4:eth1
+  - endpoints:
+    - c3-spine1:eth5
+    - c3-leaf5:eth1
+  - endpoints:
+    - c3-spine1:eth6
+    - c3-leaf6:eth1
+  - endpoints:
+    - c3-spine1:eth7
+    - c3-borderleaf1:eth1
+  - endpoints:
+    - c3-spine1:eth8
+    - c3-borderleaf2:eth1
+  - endpoints:
+    - c3-spine2:eth1
+    - c3-leaf1:eth2
+  - endpoints:
+    - c3-spine2:eth2
+    - c3-leaf2:eth2
+  - endpoints:
+    - c3-spine2:eth3
+    - c3-leaf3:eth2
+  - endpoints:
+    - c3-spine2:eth4
+    - c3-leaf4:eth2
+  - endpoints:
+    - c3-spine2:eth5
+    - c3-leaf5:eth2
+  - endpoints:
+    - c3-spine2:eth6
+    - c3-leaf6:eth2
+  - endpoints:
+    - c3-spine2:eth7
+    - c3-borderleaf1:eth2
+  - endpoints:
+    - c3-spine2:eth8
+    - c3-borderleaf2:eth2
+  - endpoints:
+    - c3-leaf1:eth5
+    - c3-leaf2:eth5
+  - endpoints:
+    - c3-leaf1:eth6
+    - c3-leaf2:eth6
+  - endpoints:
+    - c3-leaf3:eth5
+    - c3-leaf4:eth5
+  - endpoints:
+    - c3-leaf3:eth6
+    - c3-leaf4:eth6
+  - endpoints:
+    - c3-leaf5:eth5
+    - c3-leaf6:eth5
+  - endpoints:
+    - c3-leaf5:eth6
+    - c3-leaf6:eth6
+  - endpoints:
+    - c3-borderleaf1:eth5
+    - c3-borderleaf2:eth5
+  - endpoints:
+    - c3-borderleaf1:eth6
+    - c3-borderleaf2:eth6
+  - endpoints:
+    - c3-leaf1:eth7
+    - c3-Staff-H1:eth1
+  - endpoints:
+    - c3-leaf2:eth7
+    - c3-Staff-H1:eth2
+  - endpoints:
+    - c3-leaf1:eth9
+    - c3-Media-H2:eth1
+  - endpoints:
+    - c3-leaf2:eth9
+    - c3-Media-H2:eth2
+  - endpoints:
+    - c3-leaf3:eth7
+    - c3-IOT-H3:eth1
+  - endpoints:
+    - c3-leaf4:eth7
+    - c3-IOT-H3:eth2
+  - endpoints:
+    - c3-leaf3:eth9
+    - c3-Sales-H4:eth1
+  - endpoints:
+    - c3-leaf4:eth9
+    - c3-Sales-H4:eth2
+  - endpoints:
+    - c3-leaf5:eth7
+    - c3-Staff-H5:eth1
+  - endpoints:
+    - c3-leaf6:eth7
+    - c3-Staff-H5:eth2
+  - endpoints:
+    - c3-leaf5:eth9
+    - c3-Sales-H6:eth1
+  - endpoints:
+    - c3-leaf6:eth9
+    - c3-Sales-H6:eth2
+  - endpoints:
+    - c3-leaf1:eth8
+    - c3-Media-H8:eth1
+  - endpoints:
+    - c3-leaf2:eth10
+    - c3-Staff-H9:eth1
+  - endpoints:
+    - c3-leaf3:eth8
+    - c3-IOT-H10:eth1
+  - endpoints:
+    - c3-leaf4:eth10
+    - c3-Sales-H11:eth1
+  - endpoints:
+    - c3-leaf5:eth8
+    - c3-IOT-H12:eth1
+  - endpoints:
+    - c1-borderleaf2:eth11
+    - wan1:eth1
+  - endpoints:
+    - c2-borderleaf2:eth11
+    - wan2:eth1
+  - endpoints:
+    - c3-borderleaf2:eth11
+    - wan3:eth1
+  - endpoints:
+    - wan1:eth2
+    - wan2:eth2
+  - endpoints:
+    - wan2:eth3
+    - wan3:eth2
