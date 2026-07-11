@@ -1,0 +1,606 @@
+{
+  "freeTextAnnotations": [],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "c1-spine1",
+      "position": {
+        "x": 320,
+        "y": -330
+      }
+    },
+    {
+      "id": "c1-spine2",
+      "position": {
+        "x": 480,
+        "y": -330
+      }
+    },
+    {
+      "id": "c1-borderleaf1",
+      "position": {
+        "x": 320,
+        "y": -490
+      }
+    },
+    {
+      "id": "c1-borderleaf2",
+      "position": {
+        "x": 480,
+        "y": -490
+      }
+    },
+    {
+      "id": "c1-leaf1",
+      "position": {
+        "x": 0,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-leaf2",
+      "position": {
+        "x": 160,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-leaf3",
+      "position": {
+        "x": 320,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-leaf4",
+      "position": {
+        "x": 480,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-leaf5",
+      "position": {
+        "x": 640,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-leaf6",
+      "position": {
+        "x": 800,
+        "y": -170
+      }
+    },
+    {
+      "id": "c1-Media-H8",
+      "position": {
+        "x": -40,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c1-Staff-H1",
+      "position": {
+        "x": 40,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c1-Media-H2",
+      "position": {
+        "x": 120,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c1-Staff-H9",
+      "position": {
+        "x": 200,
+        "y": -10
+      },
+      "labelBackgroundColor": "#0076d1",
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0
+    },
+    {
+      "id": "c1-IOT-H10",
+      "position": {
+        "x": 280,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c1-Sales-H4",
+      "position": {
+        "x": 360,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c1-IOT-H3",
+      "position": {
+        "x": 440,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c1-Sales-H11",
+      "position": {
+        "x": 520,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c1-IOT-H12",
+      "position": {
+        "x": 640,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c1-Staff-H5",
+      "position": {
+        "x": 720,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c1-Sales-H6",
+      "position": {
+        "x": 800,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "wan1",
+      "position": {
+        "x": 480,
+        "y": -650
+      }
+    },
+    {
+      "id": "c2-spine1",
+      "position": {
+        "x": 1420,
+        "y": -330
+      }
+    },
+    {
+      "id": "c2-spine2",
+      "position": {
+        "x": 1580,
+        "y": -330
+      }
+    },
+    {
+      "id": "c2-borderleaf1",
+      "position": {
+        "x": 1420,
+        "y": -490
+      }
+    },
+    {
+      "id": "c2-borderleaf2",
+      "position": {
+        "x": 1580,
+        "y": -490
+      }
+    },
+    {
+      "id": "c2-leaf1",
+      "position": {
+        "x": 1100,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-leaf2",
+      "position": {
+        "x": 1260,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-leaf3",
+      "position": {
+        "x": 1420,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-leaf4",
+      "position": {
+        "x": 1580,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-leaf5",
+      "position": {
+        "x": 1740,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-leaf6",
+      "position": {
+        "x": 1900,
+        "y": -170
+      }
+    },
+    {
+      "id": "c2-Media-H8",
+      "position": {
+        "x": 1060,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c2-Staff-H1",
+      "position": {
+        "x": 1140,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c2-Media-H2",
+      "position": {
+        "x": 1220,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c2-Staff-H9",
+      "position": {
+        "x": 1300,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c2-IOT-H10",
+      "position": {
+        "x": 1380,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c2-Sales-H4",
+      "position": {
+        "x": 1460,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c2-IOT-H3",
+      "position": {
+        "x": 1540,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c2-Sales-H11",
+      "position": {
+        "x": 1620,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c2-IOT-H12",
+      "position": {
+        "x": 1740,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c2-Staff-H5",
+      "position": {
+        "x": 1820,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c2-Sales-H6",
+      "position": {
+        "x": 1900,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "wan2",
+      "position": {
+        "x": 1580,
+        "y": -650
+      }
+    },
+    {
+      "id": "c3-spine1",
+      "position": {
+        "x": 2520,
+        "y": -330
+      }
+    },
+    {
+      "id": "c3-spine2",
+      "position": {
+        "x": 2680,
+        "y": -330
+      }
+    },
+    {
+      "id": "c3-borderleaf1",
+      "position": {
+        "x": 2520,
+        "y": -490
+      }
+    },
+    {
+      "id": "c3-borderleaf2",
+      "position": {
+        "x": 2680,
+        "y": -490
+      }
+    },
+    {
+      "id": "c3-leaf1",
+      "position": {
+        "x": 2200,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-leaf2",
+      "position": {
+        "x": 2360,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-leaf3",
+      "position": {
+        "x": 2520,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-leaf4",
+      "position": {
+        "x": 2680,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-leaf5",
+      "position": {
+        "x": 2840,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-leaf6",
+      "position": {
+        "x": 3000,
+        "y": -170
+      }
+    },
+    {
+      "id": "c3-Media-H8",
+      "position": {
+        "x": 2160,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c3-Staff-H1",
+      "position": {
+        "x": 2240,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c3-Media-H2",
+      "position": {
+        "x": 2320,
+        "y": -10
+      },
+      "icon": "server",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#36b42d"
+    },
+    {
+      "id": "c3-Staff-H9",
+      "position": {
+        "x": 2400,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c3-IOT-H10",
+      "position": {
+        "x": 2480,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c3-Sales-H4",
+      "position": {
+        "x": 2560,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c3-IOT-H3",
+      "position": {
+        "x": 2640,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c3-Sales-H11",
+      "position": {
+        "x": 2720,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "c3-IOT-H12",
+      "position": {
+        "x": 2840,
+        "y": -10
+      },
+      "icon": "rgw",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#d15e00"
+    },
+    {
+      "id": "c3-Staff-H5",
+      "position": {
+        "x": 2920,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#0076d1"
+    },
+    {
+      "id": "c3-Sales-H6",
+      "position": {
+        "x": 3000,
+        "y": -10
+      },
+      "icon": "client",
+      "iconColor": "#9e9e9e",
+      "iconCornerRadius": 0,
+      "labelBackgroundColor": "#cdbc0a"
+    },
+    {
+      "id": "wan3",
+      "position": {
+        "x": 2680,
+        "y": -650
+      }
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {}
+}
