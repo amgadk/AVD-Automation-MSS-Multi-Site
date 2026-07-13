@@ -23,3 +23,28 @@ LAB:
       ansible_host: 192.168.0.219
     c1-IOT-H12:
       ansible_host: 192.168.0.220
+########################################
+############### Campus 2 ###############
+########################################
+    c2-Staff-H1:
+      ansible_host: 192.168.0.221
+    c2-Media-H2:
+      ansible_host: 192.168.0.222
+    c2-IOT-H3:
+      ansible_host: 192.168.0.223
+    c2-Sales-H4:
+      ansible_host: 192.168.0.224
+    c2-Staff-H5:
+      ansible_host: 192.168.0.225
+    c2-Sales-H6:
+      ansible_host: 192.168.0.226
+    c2-Media-H8:
+      ansible_host: 192.168.0.228
+    c2-Staff-H9:
+      ansible_host: 192.168.0.229
+    c2-IOT-H10:
+      ansible_host: 192.168.0.230
+    c2-Sales-H11:
+      ansible_host: 192.168.0.231
+    c2-IOT-H12:
+      ansible_host: 192.168.0.232
