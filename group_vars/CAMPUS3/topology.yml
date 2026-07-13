@@ -6,7 +6,7 @@ spine:
     bgp_as: 65030
     loopback_ipv4_pool: 10.255.30.0/24
     mlag: false
-    campus: ACME
+    campus: ACME-AU
     campus_pod: CAMPUS3
   nodes:
     - name: c3-spine1
@@ -33,11 +33,11 @@ l3leaf:
     spanning_tree_mode: mstp # Spanning Tree is still enabled even in EVPN setups
     spanning_tree_priority: 16384
     mlag: true # By default, use MLAG
-    campus: ACME
+    campus: ACME-AU
     campus_pod: CAMPUS3
   node_groups:
     - group: mlag31
-      campus_access_pod: MLAG1
+      campus_access_pod: C3-POD1
       # bgp_as is configured automatically from the range, but can be overriden
       nodes:
         - name: c3-leaf1
@@ -49,7 +49,7 @@ l3leaf:
           mgmt_ip: 192.168.0.132/24
           uplink_switch_interfaces: [Ethernet2, Ethernet2]
     - group: mlag32
-      campus_access_pod: MLAG2
+      campus_access_pod: C3-POD2
       #bgp_as: 65150 # Overriden automatic allocation for this leaf pair
       nodes:
         - name: c3-leaf3
@@ -61,7 +61,7 @@ l3leaf:
           mgmt_ip: 192.168.0.134/24
           uplink_switch_interfaces: [Ethernet4, Ethernet4]
     - group: mlag33
-      campus_access_pod: MLAG3
+      campus_access_pod: C3-POD3
       #bgp_as: 65150 # Overriden automatic allocation for this leaf pair
       nodes:
         - name: c3-leaf5
@@ -73,7 +73,6 @@ l3leaf:
           mgmt_ip: 192.168.0.136/24
           uplink_switch_interfaces: [Ethernet6, Ethernet6]
     - group: c3-borderleafs
-      campus_access_pod: BORDERLEAFS
       bgp_as: 65320 # Overriden automatic allocation for BorderLeafs
       nodes:
         - name: c3-borderleaf1
