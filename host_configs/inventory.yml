@@ -3,48 +3,246 @@ LAB:
   hosts:
     c1-Staff-H1:
       ansible_host: 192.168.0.209
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c1-Media-H2:
       ansible_host: 192.168.0.210
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Media
+        - name: Role
+          value: Endpoint
     c1-IOT-H3:
       ansible_host: 192.168.0.211
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
     c1-Sales-H4:
       ansible_host: 192.168.0.212
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c1-Staff-H5:
       ansible_host: 192.168.0.213
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c1-Sales-H6:
       ansible_host: 192.168.0.214
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c1-Media-H8:
       ansible_host: 192.168.0.216
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Media
+        - name: Role
+          value: Endpoint
     c1-Staff-H9:
       ansible_host: 192.168.0.217
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c1-IOT-H10:
       ansible_host: 192.168.0.218
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
     c1-Sales-H11:
       ansible_host: 192.168.0.219
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c1-IOT-H12:
       ansible_host: 192.168.0.220
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS1
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
 ########################################
 ############### Campus 2 ###############
 ########################################
     c2-Staff-H1:
       ansible_host: 192.168.0.221
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c2-Media-H2:
       ansible_host: 192.168.0.222
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Media
+        - name: Role
+          value: Endpoint
     c2-IOT-H3:
       ansible_host: 192.168.0.223
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
     c2-Sales-H4:
       ansible_host: 192.168.0.224
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c2-Staff-H5:
       ansible_host: 192.168.0.225
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c2-Sales-H6:
       ansible_host: 192.168.0.226
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c2-Media-H8:
       ansible_host: 192.168.0.228
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Media
+        - name: Role
+          value: Endpoint
     c2-Staff-H9:
       ansible_host: 192.168.0.229
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Staff
+        - name: Role
+          value: Endpoint
     c2-IOT-H10:
       ansible_host: 192.168.0.230
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
     c2-Sales-H11:
       ansible_host: 192.168.0.231
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: Sales
+        - name: Role
+          value: Endpoint
     c2-IOT-H12:
       ansible_host: 192.168.0.232
+      cv_device_tags:
+        - name: Campus
+          value: ACME-AU
+        - name: Campus-Pod
+          value: CAMPUS2
+        - name: Department
+          value: IOT
+        - name: Role
+          value: Endpoint
