@@ -60,3 +60,10 @@ bgp_update_wait_for_convergence: false
 #mgmt_interface_vrf: MGMT
 #mgmt_gateway: 192.168.0.1
 
+# CloudVision Campus tags (Campus / Campus-Pod / Access-Pod / Role).
+# Requires `campus` (and optionally campus_pod / campus_access_pod) to also be
+# set on the node type defaults/node_groups in each CAMPUS*/topology.yml.
+generate_cv_tags:
+  campus_fabric: true
+  topology_hints: true
+
