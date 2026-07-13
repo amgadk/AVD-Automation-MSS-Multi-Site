@@ -17,28 +17,25 @@
 
 # CloudVision onboarding + tags for lab host/endpoint devices.
 # These devices are not part of the AVD fabric inventory/eos_designs pipeline,
-# so they never receive metadata.cv_tags. This play uses cv_deploy in
-# "cv_deploy-only" mode (read_structured_config_from_file: false) to assign
-# CloudVision device tags directly. eos_config_dir is pointed at the existing
-# host_configs/ directory (instead of the default intended/configs, which is
-# never generated for these devices) so cv_deploy pushes the same .cfg
-# already applied above via eos_config as the device's flat-layout configlet.
-#
-# cv_device_tags is defined per-host directly in host_configs/inventory.yml
-# rather than templated here from inventory_hostname: cv_deploy's internal
-# per-device hostvars resolution (used only for cv_deploy-only schema keys
-# like cv_device_tags) did not pick up a play-level `vars:` value with
-# cross-host Jinja, even for the host actually running the delegated task
-# (verified via cv_register_detailed_results - device_tags came back empty
-# for every device). Plain inventory host_vars resolve reliably instead.
+# so they never receive metadata.cv_tags. On the installed AVD version (6.0.0),
+# cv_deploy's cv_workflow module has no "read tags from Ansible vars" mode at
+# all (that only exists in newer/unreleased AVD) - it always reads structured
+# config, including CloudVision tags, from a real file at
+# {{ structured_dir }}/<hostname>.yml (metadata.cv_tags.device_tags key).
+# eos_config_dir and structured_dir are both pointed at host_configs/ (instead
+# of the default intended/configs and intended/structured_configs, which are
+# never generated for these devices) so cv_deploy finds:
+#   - host_configs/<hostname>.cfg for the flat-layout configlet (already
+#     applied to the device above via eos_config)
+#   - host_configs/<hostname>.yml for the CloudVision device tags
 - name: Tag host/endpoint devices on CloudVision
   hosts: "{{ target_hosts }}"
   connection: local
   gather_facts: false
 
   vars:
-    read_structured_config_from_file: false
     eos_config_dir: "{{ inventory_dir }}"
+    structured_dir: "{{ inventory_dir }}"
 
   tasks:
     - name: Deploy CloudVision tags for lab host/endpoint devices
