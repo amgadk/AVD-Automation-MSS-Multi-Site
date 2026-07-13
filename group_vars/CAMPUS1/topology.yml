@@ -33,7 +33,7 @@ l3leaf:
     spanning_tree_mode: mstp # Spanning Tree is still enabled even in EVPN setups
     spanning_tree_priority: 16384
     mlag: true # By default, use MLAG
-    campus: ACME
+    campus: ACME-AU
     campus_pod: CAMPUS1
   node_groups:
     - group: mlag1
