@@ -15,13 +15,14 @@
         src: ../host_configs/{{inventory_hostname}}.cfg
         replace: line
 
-# Tags-only CloudVision onboarding for lab host/endpoint devices.
+# CloudVision onboarding + tags for lab host/endpoint devices.
 # These devices are not part of the AVD fabric inventory/eos_designs pipeline,
 # so they never receive metadata.cv_tags. This play uses cv_deploy in
 # "cv_deploy-only" mode (read_structured_config_from_file: false) to assign
-# CloudVision device tags directly, without touching config deployment
-# (cv_use_static_config_manifest: true skips the flat-layout configlet push,
-# since host configs are already pushed above via eos_config).
+# CloudVision device tags directly. eos_config_dir is pointed at the existing
+# host_configs/ directory (instead of the default intended/configs, which is
+# never generated for these devices) so cv_deploy pushes the same .cfg
+# already applied above via eos_config as the device's flat-layout configlet.
 - name: Tag host/endpoint devices on CloudVision
   hosts: "{{ target_hosts }}"
   connection: local
@@ -29,7 +30,7 @@
 
   vars:
     read_structured_config_from_file: false
-    cv_use_static_config_manifest: true
+    eos_config_dir: "{{ inventory_dir }}"
     # Hostnames follow c<site>-<Department>-H<n>, e.g. c1-Staff-H1.
     cv_device_tags:
       - name: Campus
