@@ -1,0 +1,12 @@
+---
+metadata:
+  cv_tags:
+    device_tags:
+      - name: Campus
+        value: ACME-AU
+      - name: Campus-Pod
+        value: CAMPUS3
+      - name: Department
+        value: Sales
+      - name: Role
+        value: endpoint
