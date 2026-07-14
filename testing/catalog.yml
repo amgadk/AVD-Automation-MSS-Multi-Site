@@ -1,53 +1,3205 @@
 # testing/catalog.yml
+# Full department connectivity matrix: every host in every campus is
+# tested (ICMP, TCP, UDP, Telnet) against the representative host of each
+# department in its own campus, including its own department, so both
+# cross-department and intra-department reachability are verified.
+# Generated - see Makefile `test` target for per-campus selection.
 testing.custom:
 
   # ==========================================
-  #  STAFF-H1 DATA PLANE PROTOCOL CONFIG
+  #  CAMPUS 1 DEPARTMENT CONNECTIVITY MATRIX
   # ==========================================
+
+  # ---- c1-Staff-H1 ----
   - ICMP:
       filters:
         tags: ["c1-Staff-H1"]
       hosts:
-        - destination: "172.16.21.10" # Check reachability to Media-H2
-          vrf: "default"
-          repeat: 5
-
-  - ICMP:
-      filters:
-        tags: ["c1-Staff-H1"]
-      hosts:
-        - destination: "172.16.31.10" # Check reachability to IOT-H3
-          vrf: "default"
-          repeat: 5
-
-  # ==========================================
-  #  MEDIA-H2 DATA PLANE PROTOCOL CONFIG
-  # ==========================================
-  - ICMP:
-      filters:
-        tags: ["c1-Media-H2"]
-      hosts:
-        - destination: "172.16.11.10" # Check reachability to Staff-H1
-          vrf: "default"
-          repeat: 5
-
-  - ICMP:
-      filters:
-        tags: ["c1-Media-H2"]
-      hosts:
-        - destination: "172.16.41.10" # Check reachability to Sales-H4
+        - destination: "172.16.21.10"
           vrf: "default"
           repeat: 5
 
   - TCP:
       filters:
-        tags: ["c1-Media-H2"]            # --- THE FIX: Media-H2 runs the client check ---
-      destination: "172.16.11.10"    # --- THE FIX: Target Staff-H1 server IP ---
-      port: 5901                     # Target Application Port
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.21.10"
+      port: 53
 
   - Telnet:
       filters:
-        tags: ["c1-Media-H2"]            # Run the cleartext check from the client side
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H1"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Media-H2 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H2"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H2"]
       destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H2"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H2"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H2"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-IOT-H3 ----
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H3"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Sales-H4 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H4"]
+      destination: "172.16.31.10"
+      port: 23
+
+
+  # ---- c1-Staff-H5 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H5"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Sales-H6 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H6"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Media-H8 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H8"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H8"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H8"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Media-H8"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Media-H8"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Staff-H9 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Staff-H9"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-IOT-H10 ----
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H10"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-Sales-H11 ----
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-Sales-H11"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ---- c1-IOT-H12 ----
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      hosts:
+        - destination: "172.16.11.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.11.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.11.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.11.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      hosts:
+        - destination: "172.16.21.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.21.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.21.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.21.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      hosts:
+        - destination: "172.16.31.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.31.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.31.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.31.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      hosts:
+        - destination: "172.16.41.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.41.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.41.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c1-IOT-H12"]
+      destination: "172.16.41.10"
+      port: 23
+
+
+  # ==========================================
+  #  CAMPUS 2 DEPARTMENT CONNECTIVITY MATRIX
+  # ==========================================
+
+  # ---- c2-Staff-H1 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H1"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Media-H2 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H2"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H2"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H2"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H2"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-IOT-H3 ----
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H3"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Sales-H4 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H4"]
+      destination: "172.16.32.10"
+      port: 23
+
+
+  # ---- c2-Staff-H5 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H5"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Sales-H6 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H6"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Media-H8 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H8"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H8"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H8"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Media-H8"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Media-H8"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Staff-H9 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Staff-H9"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-IOT-H10 ----
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H10"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-Sales-H11 ----
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-Sales-H11"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ---- c2-IOT-H12 ----
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      hosts:
+        - destination: "172.16.12.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.12.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.12.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.12.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      hosts:
+        - destination: "172.16.22.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.22.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.22.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.22.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      hosts:
+        - destination: "172.16.32.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.32.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.32.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.32.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      hosts:
+        - destination: "172.16.42.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.42.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.42.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c2-IOT-H12"]
+      destination: "172.16.42.10"
+      port: 23
+
+
+  # ==========================================
+  #  CAMPUS 3 DEPARTMENT CONNECTIVITY MATRIX
+  # ==========================================
+
+  # ---- c3-Staff-H1 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H1"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Media-H2 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H2"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H2"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H2"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H2"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-IOT-H3 ----
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H3"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Sales-H4 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H4"]
+      destination: "172.16.33.10"
+      port: 23
+
+
+  # ---- c3-Staff-H5 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H5"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Sales-H6 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H6"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Media-H8 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H8"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H8"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H8"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Media-H8"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Media-H8"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Staff-H9 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Staff-H9"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-IOT-H10 ----
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H10"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-Sales-H11 ----
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-Sales-H11"]
+      destination: "172.16.43.10"
+      port: 23
+
+
+  # ---- c3-IOT-H12 ----
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      hosts:
+        - destination: "172.16.13.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.13.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.13.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.13.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      hosts:
+        - destination: "172.16.23.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.23.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.23.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.23.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      hosts:
+        - destination: "172.16.33.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.33.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.33.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.33.10"
+      port: 23
+
+  - ICMP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      hosts:
+        - destination: "172.16.43.10"
+          vrf: "default"
+          repeat: 5
+
+  - TCP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.43.10"
+      port: 22
+
+  - UDP:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.43.10"
+      port: 53
+
+  - Telnet:
+      filters:
+        tags: ["c3-IOT-H12"]
+      destination: "172.16.43.10"
       port: 23
 

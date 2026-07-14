@@ -1,29 +1,113 @@
 # testing/anta_hosts.yml
 anta_inventory:
   hosts:
+    ########################################
+    ############### Campus 1 ###############
+    ########################################
     - host: 192.168.0.209
       name: c1-Staff-H1
+      tags: ["campus1"]
     - host: 192.168.0.210
       name: c1-Media-H2
+      tags: ["campus1"]
     - host: 192.168.0.211
       name: c1-IOT-H3
+      tags: ["campus1"]
     - host: 192.168.0.212
       name: c1-Sales-H4
+      tags: ["campus1"]
     - host: 192.168.0.213
       name: c1-Staff-H5
+      tags: ["campus1"]
     - host: 192.168.0.214
       name: c1-Sales-H6
+      tags: ["campus1"]
     - host: 192.168.0.216
       name: c1-Media-H8
+      tags: ["campus1"]
     - host: 192.168.0.217
       name: c1-Staff-H9
+      tags: ["campus1"]
     - host: 192.168.0.218
       name: c1-IOT-H10
+      tags: ["campus1"]
     - host: 192.168.0.219
       name: c1-Sales-H11
+      tags: ["campus1"]
     - host: 192.168.0.220
       name: c1-IOT-H12
+      tags: ["campus1"]
 
+    ########################################
+    ############### Campus 2 ###############
+    ########################################
+    - host: 192.168.0.221
+      name: c2-Staff-H1
+      tags: ["campus2"]
+    - host: 192.168.0.222
+      name: c2-Media-H2
+      tags: ["campus2"]
+    - host: 192.168.0.223
+      name: c2-IOT-H3
+      tags: ["campus2"]
+    - host: 192.168.0.224
+      name: c2-Sales-H4
+      tags: ["campus2"]
+    - host: 192.168.0.225
+      name: c2-Staff-H5
+      tags: ["campus2"]
+    - host: 192.168.0.226
+      name: c2-Sales-H6
+      tags: ["campus2"]
+    - host: 192.168.0.228
+      name: c2-Media-H8
+      tags: ["campus2"]
+    - host: 192.168.0.229
+      name: c2-Staff-H9
+      tags: ["campus2"]
+    - host: 192.168.0.230
+      name: c2-IOT-H10
+      tags: ["campus2"]
+    - host: 192.168.0.231
+      name: c2-Sales-H11
+      tags: ["campus2"]
+    - host: 192.168.0.232
+      name: c2-IOT-H12
+      tags: ["campus2"]
 
-
-
+    ########################################
+    ############### Campus 3 ###############
+    ########################################
+    - host: 192.168.0.233
+      name: c3-Staff-H1
+      tags: ["campus3"]
+    - host: 192.168.0.234
+      name: c3-Media-H2
+      tags: ["campus3"]
+    - host: 192.168.0.235
+      name: c3-IOT-H3
+      tags: ["campus3"]
+    - host: 192.168.0.236
+      name: c3-Sales-H4
+      tags: ["campus3"]
+    - host: 192.168.0.237
+      name: c3-Staff-H5
+      tags: ["campus3"]
+    - host: 192.168.0.238
+      name: c3-Sales-H6
+      tags: ["campus3"]
+    - host: 192.168.0.240
+      name: c3-Media-H8
+      tags: ["campus3"]
+    - host: 192.168.0.241
+      name: c3-Staff-H9
+      tags: ["campus3"]
+    - host: 192.168.0.242
+      name: c3-IOT-H10
+      tags: ["campus3"]
+    - host: 192.168.0.243
+      name: c3-Sales-H11
+      tags: ["campus3"]
+    - host: 192.168.0.244
+      name: c3-IOT-H12
+      tags: ["campus3"]

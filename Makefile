@@ -31,26 +31,39 @@ ANTA_REPORT_DIR:= testing/reports
 ANTA_USER      := arista
 ANTA_PASSWORD  := Arista123!
 
+# --- CAMPUS SELECTION ---
+# Usage: make test campus1 | make test campus2 | make test campus3 | make test all
+# Each host in testing/anta_hosts.yml is tagged campus1/campus2/campus3, so
+# passing a campus name restricts the run to that campus via `anta --tags`.
+CAMPUSES  := campus1 campus2 campus3
+CAMPUS_ARG:= $(filter $(CAMPUSES),$(MAKECMDGOALS))
+ifneq ($(CAMPUS_ARG),)
+ANTA_TAGS := --tags $(CAMPUS_ARG)
+else
+ANTA_TAGS :=
+endif
+
+# Swallow campus/all as plain arguments instead of make targets to build.
+.PHONY: $(CAMPUSES) all
+$(CAMPUSES) all:
+	@:
+
 .PHONY: test
-test: ## Run ANTA NRFU tests (Terminal Grid Table view)
+test: ## Run ANTA NRFU tests (Terminal Grid Table view). Add campus1|campus2|campus3|all to scope the run
 	@echo "Running parallel traffic verification matrix..."
-	PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure table
+	PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure $(ANTA_TAGS) table
 
 
 .PHONY: text
-text: ## Run ANTA NRFU tests (Raw Text Stream view)
+text: ## Run ANTA NRFU tests (Raw Text Stream view). Add campus1|campus2|campus3|all to scope the run
 	@echo "Streaming raw text testing matrix..."
-	anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure text
-
-# Locate the report target in your Makefile and replace it with this:
-
-# Find the report target in your Makefile and update it exactly to this:
+	anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure $(ANTA_TAGS) text
 
 .PHONY: report
-report: ## Run ANTA NRFU tests and generate permanent Markdown logs
+report: ## Run ANTA NRFU tests and generate permanent Markdown logs. Add campus1|campus2|campus3|all to scope the run
 	@echo "Generating permanent Markdown test records..."
 	@mkdir -p $(ANTA_REPORT_DIR)
-	PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure md-report --md-output $(ANTA_REPORT_DIR)/anta_report.md
+	PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure $(ANTA_TAGS) md-report --md-output $(ANTA_REPORT_DIR)/anta_report.md
 	@echo "Report saved successfully to $(ANTA_REPORT_DIR)/anta_report.md"
 
 

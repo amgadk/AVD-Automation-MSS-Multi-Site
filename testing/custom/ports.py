@@ -8,103 +8,141 @@ from typing import Literal, Optional, List
 from anta.models import AntaTest, AntaCommand, AntaTemplate
 
 PEER_DEVICES = {
-    "172.16.11.10": "Staff-H1",
-    "172.16.21.10": "Media-H2",
-    "172.16.31.10": "IOT-H3",
-    "172.16.41.10": "Sales-H4",
+    "172.16.11.10": "c1-Staff-H1",
+    "172.16.21.10": "c1-Media-H2",
+    "172.16.31.10": "c1-IOT-H3",
+    "172.16.41.10": "c1-Sales-H4",
+    "172.16.12.10": "c2-Staff-H1",
+    "172.16.22.10": "c2-Media-H2",
+    "172.16.32.10": "c2-IOT-H3",
+    "172.16.42.10": "c2-Sales-H4",
+    "172.16.13.10": "c3-Staff-H1",
+    "172.16.23.10": "c3-Media-H2",
+    "172.16.33.10": "c3-IOT-H3",
+    "172.16.43.10": "c3-Sales-H4",
 }
 
-class BaseLayer4Socket(AntaTest):
-    """Base class providing transport path validation via explicit shell-routing wrappers."""
+class TCP(AntaTest):
+    """Validates Layer 4 TCP reachability by opening a raw /dev/tcp socket and checking for
+    an SSH identification banner. Relies on sshd, which already runs by default on every EOS
+    host, so no test server needs to be deployed on the destination."""
+    name = "TCP"
+    description = "Validates active Layer 4 TCP connectivity via SSH banner exchange (port 22)."
     categories = ["connectivity"]
-    
+
     commands = [
         AntaTemplate(
-            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then iperf -c {destination} -p {port} {udp_flag} -t 2; else ip netns exec ns-{vrf} iperf -c {destination} -p {port} {udp_flag} -t 2; fi'", 
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port}; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port}\"; fi'",
             ofmt="text"
         )
     ]
 
     class Input(AntaTest.Input):
         destination: IPvAnyAddress = Field(description="Target destination IP address to test.")
-        port: int = Field(description="Layer 4 target destination port number (1-65535).", ge=1, le=65535)
-        timeout: int = Field(default=4, description="Handshake timeout in seconds.")
+        port: int = Field(default=22, description="TCP destination port (defaults to SSH).", ge=1, le=65535)
+        timeout: int = Field(default=3, description="Connection timeout in seconds.")
         vrf: str = Field(default="default", description="VRF routing context instance.")
 
-
-class TCP(BaseLayer4Socket):
-    """Validates active Layer 4 transport path parameters by rendering an iperf TCP client."""
-    name = "TCP"
-    description = "Validates active Layer 4 TCP transport path connectivity."
-
     def render(self, template: AntaTemplate) -> list[AntaCommand]:
-        return [template.render(timeout=self.inputs.timeout + 3, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port, udp_flag="")]
+        return [template.render(timeout=self.inputs.timeout, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port)]
 
     @AntaTest.anta_test
     def test(self) -> None:
         dest_ip = str(self.inputs.destination)
         peer_name = PEER_DEVICES.get(dest_ip, dest_ip)
-        self.result.description = f"Verify TCP session from {self.result.name} to {peer_name} (Port {self.inputs.port})"
-        
-        # --- FIX: Safely parse instance_commands as a list to avoid AttributeError ---
+        self.result.description = f"Verify TCP/SSH reachability from {self.result.name} to {peer_name} (Port {self.inputs.port})"
+
         cmds = self.instance_commands if isinstance(self.instance_commands, list) else [self.instance_commands]
         command_output = cmds[0].output.lower()
-        
-        if "connected" in command_output:
+
+        if "ssh-" in command_output:
             self.result.is_success()
         else:
-            self.result.is_failure(f"Connection refused or unreachable to {peer_name} on port {self.inputs.port}")
+            self.result.is_failure(f"No SSH banner received from {peer_name} on port {self.inputs.port} - port closed or unreachable")
 
 
-class Telnet(BaseLayer4Socket):
-    """Validates cleartext Telnet path connectivity using native iperf templates."""
+class Telnet(AntaTest):
+    """Validates cleartext Telnet (port 23) reachability by opening a raw /dev/tcp socket.
+    Unlike SSH, Telnet servers reply with binary IAC negotiation bytes rather than a clean
+    text banner, so success is inferred from receiving any data at all without an explicit
+    refusal - rather than matching specific banner text.
+    Requires 'management telnet' / 'no shutdown' on the destination (added to the department
+    representative hosts in host_configs/*.cfg - it is not an EOS default, unlike sshd)."""
     name = "Telnet"
-    description = "Validates active cleartext Telnet application layer delivery."
-    
-    class Input(BaseLayer4Socket.Input):
-        port: int = Field(default=23, description="Telnet transport port.", ge=1, le=65535)
+    description = "Validates active cleartext Telnet (port 23) reachability."
+    categories = ["connectivity"]
+
+    commands = [
+        AntaTemplate(
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port}; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port}\"; fi'",
+            ofmt="text"
+        )
+    ]
+
+    class Input(AntaTest.Input):
+        destination: IPvAnyAddress = Field(description="Target destination IP address to test.")
+        port: int = Field(default=23, description="Telnet destination port.", ge=1, le=65535)
+        timeout: int = Field(default=3, description="Connection timeout in seconds.")
+        vrf: str = Field(default="default", description="VRF routing context instance.")
 
     def render(self, template: AntaTemplate) -> list[AntaCommand]:
-        return [template.render(timeout=self.inputs.timeout + 3, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port, udp_flag="")]
+        return [template.render(timeout=self.inputs.timeout, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port)]
 
     @AntaTest.anta_test
     def test(self) -> None:
         dest_ip = str(self.inputs.destination)
         peer_name = PEER_DEVICES.get(dest_ip, dest_ip)
-        self.result.description = f"Verify Telnet delivery from {self.result.name} to {peer_name}"
-        
-        # --- FIX: Safely parse instance_commands as a list ---
+        self.result.description = f"Verify Telnet reachability from {self.result.name} to {peer_name} (Port {self.inputs.port})"
+
         cmds = self.instance_commands if isinstance(self.instance_commands, list) else [self.instance_commands]
-        command_output = cmds[0].output.lower()
-        
-        if "connected" in command_output:
+        raw_output = cmds[0].output
+        command_output = raw_output.lower()
+        refused = any(kw in command_output for kw in ("refused", "unreachable", "no route"))
+
+        if raw_output.strip() and not refused:
             self.result.is_success()
         else:
-            self.result.is_failure(f"Cleartext Telnet path to {peer_name} is blocked or down")
+            self.result.is_failure(f"Telnet port {self.inputs.port} on {peer_name} did not respond - closed, unreachable, or filtered")
 
 
-class UDP(BaseLayer4Socket):
-    """Validates active UDP transport path parameters by rendering an iperf UDP client."""
+class UDP(AntaTest):
+    """Fire-and-forget UDP reachability probe: sends an empty datagram via a raw /dev/udp
+    socket and checks that the local send succeeded (routable, no immediate socket error).
+    UDP has no handshake, so this does NOT confirm anything is listening on the destination
+    port - it only confirms the datagram could be sent along the path."""
     name = "UDP"
-    description = "Validates active Layer 4 UDP transport path connectivity."
+    description = "Validates that a UDP datagram can be sent to the destination:port (send-only, no listener confirmation)."
+    categories = ["connectivity"]
+
+    commands = [
+        AntaTemplate(
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then (echo -n | cat > /dev/udp/{destination}/{port}) && echo UDP_SEND_OK || echo UDP_SEND_FAIL; else ip netns exec ns-{vrf} bash -c \"(echo -n | cat > /dev/udp/{destination}/{port}) && echo UDP_SEND_OK || echo UDP_SEND_FAIL\"; fi'",
+            ofmt="text"
+        )
+    ]
+
+    class Input(AntaTest.Input):
+        destination: IPvAnyAddress = Field(description="Target destination IP address to test.")
+        port: int = Field(default=53, description="UDP destination port (defaults to DNS).", ge=1, le=65535)
+        timeout: int = Field(default=3, description="Send timeout in seconds.")
+        vrf: str = Field(default="default", description="VRF routing context instance.")
 
     def render(self, template: AntaTemplate) -> list[AntaCommand]:
-        return [template.render(timeout=self.inputs.timeout + 3, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port, udp_flag="-u")]
+        return [template.render(timeout=self.inputs.timeout, vrf=self.inputs.vrf, destination=str(self.inputs.destination), port=self.inputs.port)]
 
     @AntaTest.anta_test
     def test(self) -> None:
         dest_ip = str(self.inputs.destination)
         peer_name = PEER_DEVICES.get(dest_ip, dest_ip)
-        self.result.description = f"Verify UDP stream from {self.result.name} to {peer_name} (Port {self.inputs.port})"
-        
-        # --- FIX: Safely parse instance_commands as a list ---
+        self.result.description = f"Verify UDP datagram send path from {self.result.name} to {peer_name} (Port {self.inputs.port})"
+
         cmds = self.instance_commands if isinstance(self.instance_commands, list) else [self.instance_commands]
         command_output = cmds[0].output.lower()
-        
-        if "connected" in command_output or "connected with" in command_output:
+
+        if "udp_send_ok" in command_output:
             self.result.is_success()
         else:
-            self.result.is_failure(f"UDP validation failed to {peer_name}")
+            self.result.is_failure(f"Unable to send UDP datagram to {peer_name} on port {self.inputs.port} (routing/socket error)")
 
 
 # ==========================================
