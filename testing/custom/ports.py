@@ -65,7 +65,9 @@ class Telnet(AntaTest):
     """Validates cleartext Telnet (port 23) reachability by opening a raw /dev/tcp socket.
     Unlike SSH, Telnet servers reply with binary IAC negotiation bytes rather than a clean
     text banner, so success is inferred from receiving any data at all without an explicit
-    refusal - rather than matching specific banner text.
+    refusal - rather than matching specific banner text. Output is piped through `cat -v`
+    since those raw IAC bytes otherwise corrupt the eAPI JSON-RPC response and crash the
+    client with a bare KeyError instead of a normal command error.
     Requires 'management telnet' / 'no shutdown' on the destination (added to the department
     representative hosts in host_configs/*.cfg - it is not an EOS default, unlike sshd)."""
     name = "Telnet"
@@ -74,7 +76,7 @@ class Telnet(AntaTest):
 
     commands = [
         AntaTemplate(
-            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port}; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port}\"; fi'",
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port} | cat -v; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port} | cat -v\"; fi'",
             ofmt="text"
         )
     ]
