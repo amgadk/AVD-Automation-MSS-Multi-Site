@@ -9,4 +9,4 @@ metadata:
       - name: Department
         value: Sales
       - name: Role
-        value: Endpoint
+        value: endpoint

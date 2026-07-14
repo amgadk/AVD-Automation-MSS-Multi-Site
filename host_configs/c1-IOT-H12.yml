@@ -9,4 +9,4 @@ metadata:
       - name: Department
         value: IOT
       - name: Role
-        value: Endpoint
+        value: endpoint
