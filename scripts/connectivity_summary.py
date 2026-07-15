@@ -11,6 +11,9 @@ import re
 import sys
 from collections import defaultdict
 
+from rich.console import Console
+from rich.table import Table
+
 DEFAULT_INPUT = "testing/reports/nrfu_results.json"
 PROTOCOLS = ["ICMP", "TCP", "UDP", "Telnet"]
 
@@ -78,28 +81,26 @@ def build_summary(results):
 
 
 def render_table(summary):
-    rows = []
+    table = Table(title="Department Connectivity Summary", header_style="bold cyan")
+    table.add_column("Campus")
+    table.add_column("Source")
+    table.add_column("Dest")
+    for proto in PROTOCOLS:
+        table.add_column(proto, justify="center")
+
     for campus, src, dst in sorted(summary):
-        cells = []
+        row = [campus, src, dst]
         for proto in PROTOCOLS:
             total, passed = summary[(campus, src, dst)][proto]
             if total == 0:
-                cells.append("-")
+                row.append("[dim]-[/dim]")
             elif passed == total:
-                cells.append("PASS")
+                row.append("[bold green]PASS[/bold green]")
             else:
-                cells.append(f"FAIL({passed}/{total})")
-        rows.append([campus, src, dst, *cells])
+                row.append(f"[bold red]FAIL({passed}/{total})[/bold red]")
+        table.add_row(*row)
 
-    headers = ["Campus", "Source", "Dest", *PROTOCOLS]
-    widths = [max(len(str(row[i])) for row in [headers, *rows]) for i in range(len(headers))]
-
-    def fmt_row(row):
-        return "  ".join(str(cell).ljust(width) for cell, width in zip(row, widths))
-
-    lines = [fmt_row(headers)]
-    lines.extend(fmt_row(row) for row in rows)
-    return "\n".join(lines)
+    return table
 
 
 def main():
@@ -112,7 +113,7 @@ def main():
         print("No connectivity test results found.")
         return
 
-    print(render_table(summary))
+    Console().print(render_table(summary))
 
 
 if __name__ == "__main__":
