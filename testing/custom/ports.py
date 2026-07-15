@@ -30,14 +30,18 @@ class TCP(AntaTest):
     unbounded by our timeout, so on any peer where the connect took even slightly longer
     than eAPI's own command-execution ceiling, the whole check was reported as a generic
     "timed out" failure - independent of whether the peer was actually reachable. `nc -w`
-    times out the connect() itself instead of something exec'd after it."""
+    times out the connect() itself instead of something exec'd after it.
+    EOS's eAPI also refuses to run any bash command that isn't wrapped in `timeout <secs>`
+    as the very first thing after `bash` ("Command not permitted via API access"), so that
+    outer wrapper is kept even though nc's own -w already bounds the connect - it's a
+    mandatory eAPI security requirement, not something this test relies on functionally."""
     name = "TCP"
     description = "Validates active Layer 4 TCP connectivity (port 22 by default)."
     categories = ["connectivity"]
 
     commands = [
         AntaTemplate(
-            template="bash if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port}; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port}; fi && echo TCP_OPEN || echo TCP_CLOSED",
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port} && echo TCP_OPEN || echo TCP_CLOSED; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port} && echo TCP_OPEN || echo TCP_CLOSED; fi'",
             ofmt="text"
         )
     ]
@@ -68,9 +72,11 @@ class TCP(AntaTest):
 
 class Telnet(AntaTest):
     """Validates cleartext Telnet (port 23) reachability using `nc -z` (see TCP class for why
-    raw `/dev/tcp` redirection is unreliable for this). As a side benefit, `-z` never reads
-    the connection's data, so Telnet's binary IAC negotiation bytes - which used to corrupt
-    the eAPI JSON-RPC response and crash the client - never enter the picture at all.
+    raw `/dev/tcp` redirection is unreliable for this, and why the outer `timeout <secs>`
+    wrapper is kept - it's a mandatory eAPI security requirement for bash commands run over
+    the Command API). As a side benefit, `-z` never reads the connection's data, so Telnet's
+    binary IAC negotiation bytes - which used to corrupt the eAPI JSON-RPC response and crash
+    the client - never enter the picture at all.
     Requires 'management telnet' / 'no shutdown' on the destination (added to the department
     representative hosts in host_configs/*.cfg - it is not an EOS default, unlike sshd)."""
     name = "Telnet"
@@ -79,7 +85,7 @@ class Telnet(AntaTest):
 
     commands = [
         AntaTemplate(
-            template="bash if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port}; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port}; fi && echo TCP_OPEN || echo TCP_CLOSED",
+            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port} && echo TCP_OPEN || echo TCP_CLOSED; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port} && echo TCP_OPEN || echo TCP_CLOSED; fi'",
             ofmt="text"
         )
     ]
