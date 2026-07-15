@@ -23,16 +23,21 @@ PEER_DEVICES = {
 }
 
 class TCP(AntaTest):
-    """Validates Layer 4 TCP reachability by opening a raw /dev/tcp socket and checking for
-    an SSH identification banner. Relies on sshd, which already runs by default on every EOS
-    host, so no test server needs to be deployed on the destination."""
+    """Validates Layer 4 TCP reachability using `nc -z`, which performs the connect() with
+    its own internal timeout. The previous implementation used bash's `< /dev/tcp/...`
+    redirection, which opens the socket as part of shell redirection setup - *before* the
+    surrounding `timeout` wrapper ever gets exec'd. That left the connect() completely
+    unbounded by our timeout, so on any peer where the connect took even slightly longer
+    than eAPI's own command-execution ceiling, the whole check was reported as a generic
+    "timed out" failure - independent of whether the peer was actually reachable. `nc -w`
+    times out the connect() itself instead of something exec'd after it."""
     name = "TCP"
-    description = "Validates active Layer 4 TCP connectivity via SSH banner exchange (port 22)."
+    description = "Validates active Layer 4 TCP connectivity (port 22 by default)."
     categories = ["connectivity"]
 
     commands = [
         AntaTemplate(
-            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port}; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port}\"; fi'",
+            template="bash if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port}; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port}; fi && echo TCP_OPEN || echo TCP_CLOSED",
             ofmt="text"
         )
     ]
@@ -50,24 +55,22 @@ class TCP(AntaTest):
     def test(self) -> None:
         dest_ip = str(self.inputs.destination)
         peer_name = PEER_DEVICES.get(dest_ip, dest_ip)
-        self.result.description = f"Verify TCP/SSH reachability from {self.result.name} to {peer_name} (Port {self.inputs.port})"
+        self.result.description = f"Verify TCP reachability from {self.result.name} to {peer_name} (Port {self.inputs.port})"
 
         cmds = self.instance_commands if isinstance(self.instance_commands, list) else [self.instance_commands]
-        command_output = cmds[0].output.lower()
+        command_output = cmds[0].output
 
-        if "ssh-" in command_output:
+        if "TCP_OPEN" in command_output:
             self.result.is_success()
         else:
-            self.result.is_failure(f"No SSH banner received from {peer_name} on port {self.inputs.port} - port closed or unreachable")
+            self.result.is_failure(f"Port {self.inputs.port} on {peer_name} is closed, filtered, or unreachable")
 
 
 class Telnet(AntaTest):
-    """Validates cleartext Telnet (port 23) reachability by opening a raw /dev/tcp socket.
-    Unlike SSH, Telnet servers reply with binary IAC negotiation bytes rather than a clean
-    text banner, so success is inferred from receiving any data at all without an explicit
-    refusal - rather than matching specific banner text. Output is piped through `cat -v`
-    since those raw IAC bytes otherwise corrupt the eAPI JSON-RPC response and crash the
-    client with a bare KeyError instead of a normal command error.
+    """Validates cleartext Telnet (port 23) reachability using `nc -z` (see TCP class for why
+    raw `/dev/tcp` redirection is unreliable for this). As a side benefit, `-z` never reads
+    the connection's data, so Telnet's binary IAC negotiation bytes - which used to corrupt
+    the eAPI JSON-RPC response and crash the client - never enter the picture at all.
     Requires 'management telnet' / 'no shutdown' on the destination (added to the department
     representative hosts in host_configs/*.cfg - it is not an EOS default, unlike sshd)."""
     name = "Telnet"
@@ -76,7 +79,7 @@ class Telnet(AntaTest):
 
     commands = [
         AntaTemplate(
-            template="bash timeout {timeout} bash -c 'if [ \"{vrf}\" = \"default\" ]; then cat < /dev/tcp/{destination}/{port} | cat -v; else ip netns exec ns-{vrf} bash -c \"cat < /dev/tcp/{destination}/{port} | cat -v\"; fi'",
+            template="bash if [ \"{vrf}\" = \"default\" ]; then nc -zw {timeout} {destination} {port}; else ip netns exec ns-{vrf} nc -zw {timeout} {destination} {port}; fi && echo TCP_OPEN || echo TCP_CLOSED",
             ofmt="text"
         )
     ]
@@ -97,11 +100,9 @@ class Telnet(AntaTest):
         self.result.description = f"Verify Telnet reachability from {self.result.name} to {peer_name} (Port {self.inputs.port})"
 
         cmds = self.instance_commands if isinstance(self.instance_commands, list) else [self.instance_commands]
-        raw_output = cmds[0].output
-        command_output = raw_output.lower()
-        refused = any(kw in command_output for kw in ("refused", "unreachable", "no route"))
+        command_output = cmds[0].output
 
-        if raw_output.strip() and not refused:
+        if "TCP_OPEN" in command_output:
             self.result.is_success()
         else:
             self.result.is_failure(f"Telnet port {self.inputs.port} on {peer_name} did not respond - closed, unreachable, or filtered")
