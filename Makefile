@@ -66,6 +66,13 @@ report: ## Run ANTA NRFU tests and generate permanent Markdown logs. Add campus1
 	PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure $(ANTA_TAGS) md-report --md-output $(ANTA_REPORT_DIR)/anta_report.md
 	@echo "Report saved successfully to $(ANTA_REPORT_DIR)/anta_report.md"
 
+.PHONY: summary
+summary: ## Run ANTA NRFU tests and print a department-to-department connectivity summary. Add campus1|campus2|campus3|all to scope the run
+	@echo "Running parallel traffic verification matrix..."
+	@mkdir -p $(ANTA_REPORT_DIR)
+	@PYTHONPATH=$(PWD) anta nrfu --inventory $(ANTA_INVENTORY) --catalog $(ANTA_CATALOG) --username $(ANTA_USER) --password $(ANTA_PASSWORD) --insecure $(ANTA_TAGS) json -o $(ANTA_REPORT_DIR)/nrfu_results.json
+	@python3 scripts/connectivity_summary.py $(ANTA_REPORT_DIR)/nrfu_results.json
+
 
 
 .PHONY: l4-test
